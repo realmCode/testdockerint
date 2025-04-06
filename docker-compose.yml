@@ -1,12 +1,10 @@
----
 version: "3.7"
 services:
   code-server:
     image: codercom/code-server:4.16.1-ubuntu
     container_name: code-server
     environment:
-      - DOCKER_USER=$USER
-      - PASSWORD=Password #Replace this with your login password
+      - PASSWORD=Password
     volumes:
       - ./config:/config
       - $PWD:/home/coder/workspace
@@ -14,4 +12,7 @@ services:
       - 8080:8080
     restart: unless-stopped
     networks:
-    - code-server
+      - code-server 
+networks:
+  code-server:      
+    driver: bridge
